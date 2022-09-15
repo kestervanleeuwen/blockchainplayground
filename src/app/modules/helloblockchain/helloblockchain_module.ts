@@ -1,13 +1,15 @@
 /* eslint-disable class-methods-use-this */
 
 import {
-    BaseModule,
     AfterBlockApplyContext,
-    TransactionApplyContext,
-    BeforeBlockApplyContext,
-    AfterGenesisBlockApplyContext,
-    // GenesisConfig
+
+
+    AfterGenesisBlockApplyContext, BaseModule,
+
+
+    BeforeBlockApplyContext, TransactionApplyContext
 } from 'lisk-sdk';
+import { HelloblockchainAsset } from "./assets/helloblockchain_asset";
 
 export class HelloblockchainModule extends BaseModule {
     public actions = {
@@ -30,7 +32,8 @@ export class HelloblockchainModule extends BaseModule {
 		// },
     };
     public name = 'helloblockchain';
-    public transactionAssets = [];
+    public transactionAssets = [
+            new HelloblockchainAsset()];
     public events = [
         // Example below
         // 'helloblockchain:newBlock',
@@ -68,4 +71,19 @@ export class HelloblockchainModule extends BaseModule {
         // Get any data from genesis block, for example get all genesis accounts
         // const genesisAccounts = genesisBlock.header.asset.accounts;
     }
+
+    // eslint-disable-next-line @typescript-eslint/member-ordering
+    public accountSchema = {
+        type: 'object',
+        properties: {
+            helloMessage: {
+                fieldNumber: 1,
+                dataType: 'string',
+                maxLength: 64,
+            },
+        },
+        default: {
+            helloMessage: ''
+        },
+    };
 }

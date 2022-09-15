@@ -5,5 +5,5 @@ import { HelloblockchainModule } from "./modules/helloblockchain/helloblockchain
 // @ts-expect-error Unused variable error happens here until at least one module is registered
 export const registerModules = (_app: Application): void => {
 
-    app.registerModule(HelloblockchainModule);
+    _app.registerModule(HelloblockchainModule);
 };
